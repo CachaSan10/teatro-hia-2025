@@ -1,11 +1,9 @@
-
 // app/page.tsx
-import Header from '@/components/Header/Header';
-
 export default function Home() {
   return (
-    <main>
-     
-    </main>
+    <div>
+      <h1>Página de Inicio</h1>
+      <p>Bienvenido al Teatro Principal</p>
+    </div>
   );
 }
