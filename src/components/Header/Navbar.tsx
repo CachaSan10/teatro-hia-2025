@@ -8,10 +8,10 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { href: '#', label: 'Home' },
-    { href: '#', label: 'Salas de Teatro' },
-    { href: '#', label: 'Registro' },
-    { href: '#', label: 'Cartelera' },
+    { href: '/', label: 'Home' },
+    { href: '/salas-de-teatro', label: 'Salas de Teatro' },
+    { href: '/registro', label: 'Registro' },
+    { href: '/cartelera', label: 'Cartelera' },
   ];
 
   return (
