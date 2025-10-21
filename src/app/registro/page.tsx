@@ -3,8 +3,16 @@
 
 import { useState } from 'react';
 
+interface FormData {
+  nombre: string;
+  email: string;
+  telefono: string;
+  tipo: string;
+  mensaje: string;
+}
+
 export default function Registro() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     nombre: '',
     email: '',
     telefono: '',
@@ -13,10 +21,11 @@ export default function Registro() {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -28,7 +37,6 @@ export default function Registro() {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4 max-w-2xl">
-        {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Registro</h1>
           <p className="text-lg text-gray-600">
@@ -36,10 +44,8 @@ export default function Registro() {
           </p>
         </div>
 
-        {/* Formulario */}
         <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-8">
           <div className="space-y-6">
-            {/* Tipo de Registro */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Me quiero registrar como:
@@ -70,7 +76,6 @@ export default function Registro() {
               </div>
             </div>
 
-            {/* Nombre */}
             <div>
               <label htmlFor="nombre" className="block text-sm font-medium text-gray-700 mb-2">
                 Nombre Completo
@@ -82,11 +87,10 @@ export default function Registro() {
                 value={formData.nombre}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
-            {/* Email */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                 Email
@@ -98,11 +102,10 @@ export default function Registro() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
-            {/* Teléfono */}
             <div>
               <label htmlFor="telefono" className="block text-sm font-medium text-gray-700 mb-2">
                 Teléfono
@@ -113,11 +116,10 @@ export default function Registro() {
                 name="telefono"
                 value={formData.telefono}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
-            {/* Mensaje */}
             <div>
               <label htmlFor="mensaje" className="block text-sm font-medium text-gray-700 mb-2">
                 {formData.tipo === 'artista' ? 'Cuéntanos sobre tu proyecto:' : '¿Algo que quieras comentar?'}
@@ -128,14 +130,13 @@ export default function Registro() {
                 value={formData.mensaje}
                 onChange={handleChange}
                 rows={4}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
             >
               Enviar Registro
             </button>
