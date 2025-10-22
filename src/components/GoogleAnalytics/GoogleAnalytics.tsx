@@ -5,11 +5,11 @@ import Script from 'next/script';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
-// Definir el tipo para gtag
+// Definir tipos específicos para gtag
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: Record<string, any>[];
+    gtag: (command: 'config' | 'event' | 'js', targetId: string, config?: Record<string, unknown>) => void;
+    dataLayer: unknown[];
   }
 }
 
