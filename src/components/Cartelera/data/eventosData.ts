@@ -4,63 +4,75 @@ import { Evento } from '../types';
 export const eventosData: Evento[] = [
   {
     id: 1,
-    titulo: "Hamlet",
-    fecha: "2024-11-25",
-    hora: "20:30h",
-    imagen: "https://lh3.googleusercontent.com/aida-public/AB6AXuC6Mlcdgp7brseSvYgMhN0lwNa9uL7SJuu7b5q-aXlSTFGcIvquaBwnqMu0nQjz8MYHghAB-fvY9NeqK9uBtK0JuB8yKYvTKofbfPSJPEcDEY0c4Ua7QEmIWQoT3p0PQtbpjsv43fnx4l4qxgKoCRrH2ATDlEvkP325eqiZgSjwgTNe9OZ-vtOcvuS8AFyb_crKfLeTiJM3d-E6ZTa5muwm5hJfw1LddzjzKzzkYsQh245ADdGTYwkXEfOZdjUdNuDjhQk-ECuteYwb",
-    alt: "Escena de la obra Hamlet con actores en el escenario.",
+    titulo: "SIMIOTECA ‘De Mozart a Bad Bunny’",
+    fecha: "2025-12-05",
+    hora: "21:00h",
+    imagen: "/images/eventos/simioteca.jpg",
+    alt: "Cartelera de simioteca.",
     sala: "Sala Principal",
-    precio: 25,
-    categoria: "teatro",
-    descripcion: "La tragedia clásica de Shakespeare sobre la venganza y la locura."
+    precio: 30000,
+    categoria: "comedia",
+    descripcion: "En su nuevo unipersonal, Leandro Serodino combina monólogos incisivos, música en vivo y debate con el público. Un espectáculo desenfadado y profundo que cuestiona sin piedad la evolución – o retroceso – de la música argentina actual."
   },
   {
     id: 2,
-    titulo: "Concierto de Jazz Acústico",
-    fecha: "2024-11-26",
+    titulo: "Concierto de Vilma Palma",
+    fecha: "2025-11-22",
     hora: "19:00h",
-    imagen: "https://lh3.googleusercontent.com/aida-public/AB6AXuBhV0WFic5DFMDqLa8nKxJZrQchU9394dlwkIsOm4Em-xQsGGnfgJAIa9QRuvW0OfTsP99cVInHJ0o1wJ8frAulyM1mJ4ddtiUNr4odZ8ek9U1H6xMGqpqhScTOgclyAMT3Snihl_I0KWEQFt5-O7x8jBbOqsOigkRVdtk9W8b_lgAmVlTcRTAOGVWQ31dq_U1iM-_0h9rm-jtu4DUnDgYzCHnCPguCC2j8G7bcXsr89zDjD9RSLyNkv6gHG5sWSjXSODk31a2p0tHr",
-    alt: "Músico tocando un saxofón en un concierto de jazz.",
+    imagen: "/images/eventos/vilma_palma.png",
+    alt: "Músicos de la banda Vilma Palma",
     sala: "Sala Intima",
-    precio: 20,
+    precio: 50000,
     categoria: "musica",
-    descripcion: "Una noche mágica con los mejores standards de jazz en formato acústico."
+    descripcion: "Una noche mágica con la mejor banda de Rock Argentino."
   },
   {
     id: 3,
-    titulo: "El Cascanueces",
-    fecha: "2024-12-01",
+    titulo: "BALLET CLÁSICO DE SAN PETERSBURGO / El Lago de los Cisnes – versión completa",
+    fecha: "2025-11-14",
     hora: "21:00h",
-    imagen: "https://lh3.googleusercontent.com/aida-public/AB6AXuDxbIEVy9oQMJMmxQMBtMlPgZ1wp0AZh8gWwb2mXZ_I4iKEsOYFTJpOSVIMqqIozAwAisc5FHpgyf3yvbhlNBkz9raKuIyF-lgiEyBxtjFKHdjK6FADIbInfvjBV5G2hhvv4MqzeGPXSS2WYBoDf5vf7zDmhv25ZDh9xt0Pu-xaKrPp3Nn0cAkUwZLhcNEOxDWUGZQBJbCU2JpcxdF6GA0R-ZmmwTNZrUM-0DfBomIDQ_YN7j_RQyKRzw1Me_EmB1y2fdPE5QTOn9N1",
-    alt: "Bailarines de ballet interpretando El Cascanueces en el escenario.",
+    imagen: "/images/eventos/lago_cisnes.png",
+    alt: "Bailarines de ballet de San Petersburgo",
     sala: "Sala Principal",
-    precio: 30,
+    precio: 40000,
     categoria: "danza",
-    descripcion: "El ballet clásico más famoso de Tchaikovsky en una producción espectacular."
+    descripcion: " El Ballet de San Petersburgo es conocido por su compromiso con las raíces del ballet clásico, manteniendo viva la tradición y la belleza del arte en cada actuación. Si buscas una experiencia única y emotiva, no te pierdas la oportunidad de ver al Ballet de San Petersburgo en acción."
   },
   {
     id: 4,
-    titulo: "Comedia Improvisada",
-    fecha: "2024-12-05",
+    titulo: "¿QUIEN ES QUIEN?",
+    fecha: "2025-11-07",
     hora: "22:00h",
-    imagen: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?w=500&h=300&fit=crop",
+    imagen: "/images/eventos/quien_es_quien.png",
     alt: "Comediantes improvisando en el escenario.",
     sala: "Sala Experimental",
-    precio: 15,
-    categoria: "comedia",
-    descripcion: "Risas garantizadas con nuestro equipo de comediantes improvisados."
+    precio: 25000,
+    categoria: "teatro",
+    descripcion: "Quién es Quién? de Audrey Schebat es una comedia fresca y aguda que se adentra en la vida de una pareja moderna atrapada en la rutina. Ante la espera de una pareja de amigos a cenar, se desatan un torrente de situaciones hilarantes y reflexiones profundas sobre el amor, la comunicación y la búsqueda de la felicidad. A través de diálogos ingeniosos y un ritmo dinámico, la obra explora cómo lo cotidiano puede transformarse en extraordinario con un toque de locura."
   },
   {
     id: 5,
-    titulo: "Ópera: La Traviata",
-    fecha: "2024-12-10",
+    titulo: "Fuego y Pasion",
+    fecha: "2025-12-12",
     hora: "20:00h",
-    imagen: "https://images.unsplash.com/photo-1574235828370-57c13bc808b8?w=500&h=300&fit=crop",
+    imagen: "/images/eventos/fuego_pasion.png",
     alt: "Cantantes de ópera en el escenario.",
     sala: "Sala Principal",
-    precio: 40,
-    categoria: "opera",
-    descripcion: "La obra maestra de Verdi interpretada por la Orquesta Sinfónica Nacional."
+    precio: 45000,
+    categoria: "danza",
+    descripcion: "El reconocido bailarín Hernán Piquín regresa a los escenarios con “Fuego y Pasión” un espectáculo de ballet y teatro que promete emocionar y cautivar al público."
+  },
+    {
+    id: 6,
+    titulo: "La Máquina Tanguera",
+    fecha: "2025-12-11",
+    hora: "20:00h",
+    imagen: "/images/eventos/la_maquina_tanguera.png",
+    alt: "Cantantes de ópera en el escenario.",
+    sala: "Foyer del Teatro",
+    precio: 50000,
+    categoria: "danza",
+    descripcion: "Un show ágil, emocionante y auténtico, con bailarines magistrales que conquistan al público en cada función. Pensado para todas las edades, sin fronteras ni géneros, es una experiencia única que emociona y sorprende. Viví la magia, la pasión y la innovación de una artista que transformó el tango a nivel internacional"
   }
 ];
 

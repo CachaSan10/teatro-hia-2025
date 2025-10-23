@@ -48,6 +48,13 @@ export default function EventoCard({ evento, onComprarEntradas }: EventoCardProp
                 <p className="text-sm">Desde ${evento.precio}</p>
               </div>
             )}
+
+             {evento.descripcion && (
+              <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                <span className="material-symbols-outlined text-sm">info</span>
+                <p className="text-sm">{evento.descripcion}</p>
+              </div>
+            )}
           </div>
 
           {/* Botón de acción */}
