@@ -7,29 +7,21 @@ import { useEffect } from 'react';
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID;
 
-// Función para trackear pageviews manualmente
-const trackPageView = (url: string) => {
-  if (!GA_MEASUREMENT_ID || typeof window.gtag === 'undefined') {
-    return;
-  }
-
-  try {
-    window.gtag('config', GA_MEASUREMENT_ID, {
-      page_path: url,
-      page_title: document.title,
-    });
-  } catch (error) {
-    console.error('Error tracking page view:', error);
-  }
-};
-
 export default function GoogleAnalytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
+    if (!GA_MEASUREMENT_ID) return;
+
     const url = pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '');
-    trackPageView(url);
+    
+    // Track page view usando el dataLayer directamente
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'pageview',
+      page: url,
+    });
   }, [pathname, searchParams]);
 
   if (!GA_MEASUREMENT_ID) {
