@@ -5,7 +5,8 @@ import { useSearchParams } from 'next/navigation';
 import CompraEntradaEvento from '@/components/CompraEntradas/CompraEntradaEvento';
 import { Suspense } from 'react';
 
-export default function ComprarEntradasIndividualPage() {
+// Componente que usa useSearchParams
+function ComprarEntradasContent() {
   const searchParams = useSearchParams();
 
   // Obtener los datos del evento desde los query params
@@ -19,9 +20,14 @@ export default function ComprarEntradasIndividualPage() {
     precio: parseFloat(searchParams.get('precio') || '0')
   };
 
-  return 
-  <Suspense fallback={<div>Cargando...</div>}>
- <CompraEntradaEvento {...eventoProps} />;   
-  </Suspense>
- 
+  return <CompraEntradaEvento {...eventoProps} />;
+}
+
+// Página principal envuelta en Suspense
+export default function ComprarEntradasIndividualPage() {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center min-h-screen">Cargando...</div>}>
+      <ComprarEntradasContent />
+    </Suspense>
+  );
 }
