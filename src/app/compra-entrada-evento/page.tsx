@@ -4,7 +4,7 @@
 import { useSearchParams } from 'next/navigation';
 import CompraEntradaEvento from '@/components/CompraEntradas/CompraEntradaEvento';
 
-export default function ComprarEntradasPage() {
+export default function ComprarEntradasIndividualPage() {
   const searchParams = useSearchParams();
 
   // Obtener los datos del evento desde los query params
