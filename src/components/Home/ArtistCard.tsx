@@ -1,4 +1,4 @@
-// components/Home/ArtistCard.tsx - Versión mejorada
+// components/Home/ArtistCard.tsx
 'use client';
 
 import { Artista } from './data/artistasData';
@@ -10,32 +10,25 @@ interface ArtistCardProps {
 
 export default function ArtistCard({ artista, onVerMas }: ArtistCardProps) {
   return (
-    <div className="group flex flex-col overflow-hidden rounded-xl bg-[#331a1b] shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
-      {/* Imagen del Artista con overlay */}
-      <div className="relative overflow-hidden">
-        <div 
-          className="w-full aspect-[3/4] bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-          style={{ backgroundImage: `url('${artista.imagen}')` }}
-          role="img"
-          aria-label={artista.alt}
-        />
-        <div className="absolute inset-0 bg-black/20 transition-opacity duration-300 group-hover:bg-black/10" />
-      </div>
+    <div className="flex flex-col gap-4 rounded-lg bg-[#331a1b] shadow-[0_0_4px_rgba(0,0,0,0.1)] hover:shadow-[0_0_8px_rgba(0,0,0,0.2)] transition-shadow duration-300">
+      <div 
+        className="w-full aspect-[3/4] rounded-t-lg bg-cover bg-center"
+        style={{ backgroundImage: `url('${artista.imagen}')` }}
+        role="img"
+        aria-label={artista.alt}
+      />
       
-      {/* Información del Artista */}
-      <div className="flex flex-1 flex-col justify-between gap-4 p-6">
+      <div className="flex flex-1 flex-col justify-between gap-4 p-4">
         <div className="text-center">
-          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#f8b4b7] transition-colors">
-            {artista.nombre}
-          </h3>
-          <p className="text-[#c89295] text-sm font-medium">{artista.especialidad}</p>
+          <p className="text-lg font-medium text-white mb-1">{artista.nombre}</p>
+          <p className="text-sm text-[#c89295]">{artista.especialidad}</p>
         </div>
         
         <button 
           onClick={() => onVerMas(artista)}
-          className="w-full rounded-lg bg-[#472426] px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-[#5a2d2f] hover:shadow-lg transform hover:-translate-y-1"
+          className="w-full cursor-pointer rounded-lg bg-[#472426] px-4 py-2 text-sm font-bold text-white hover:bg-[#5a2d2f] transition-colors duration-200"
         >
-          Ver perfil
+          Ver más
         </button>
       </div>
     </div>

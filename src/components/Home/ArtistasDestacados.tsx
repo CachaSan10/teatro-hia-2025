@@ -1,12 +1,14 @@
-// components/Home/ArtistasDestacados.tsx
+// components/Home/ArtistasDestacados.tsx - Versión corregida
 'use client';
 
-import { artistasData } from './data/artistasData';
+import { artistasData, Artista } from './data/artistasData';
 import ArtistCard from './ArtistCard';
 
 export default function ArtistasDestacados() {
-  const handleVerMas = (artista: any) => {
+  const handleVerMas = (artista: Artista) => {
     console.log('Ver más sobre:', artista.nombre);
+    // Aquí puedes redirigir a una página de detalle
+    // router.push(`/artistas/${artista.id}`);
     alert(`Ver más sobre: ${artista.nombre}`);
   };
 
@@ -16,7 +18,6 @@ export default function ArtistasDestacados() {
         Artistas destacados
       </h2>
       
-      {/* Cambiar de scroll horizontal a grid responsive */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
         {artistasData.map((artista) => (
           <ArtistCard
