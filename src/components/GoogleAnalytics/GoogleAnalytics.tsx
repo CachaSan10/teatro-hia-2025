@@ -5,23 +5,42 @@ import Script from 'next/script';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
+// Definir tipos específicos para gtag - DEBE ESTAR AL INICIO
+type GtagCommand = 'config' | 'event' | 'js';
+type GtagParams = Record<string, string | number | boolean>;
+
+declare global {
+  interface Window {
+    gtag: (command: GtagCommand, targetId: string, config?: GtagParams) => void;
+    dataLayer: unknown[];
+  }
+}
+
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export default function GoogleAnalytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  useEffect(() => {
-    if (!GA_MEASUREMENT_ID) return;
+  // Función para trackear pageviews - DENTRO del componente
+  const trackPageView = (url: string) => {
+    if (!GA_MEASUREMENT_ID || typeof window.gtag === 'undefined') {
+      return;
+    }
 
+    try {
+      window.gtag('config', GA_MEASUREMENT_ID, {
+        page_path: url,
+        page_title: document.title,
+      });
+    } catch (error) {
+      console.error('Error tracking page view:', error);
+    }
+  };
+
+  useEffect(() => {
     const url = pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '');
-    
-    // Track page view usando el dataLayer directamente
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'pageview',
-      page: url,
-    });
+    trackPageView(url);
   }, [pathname, searchParams]);
 
   if (!GA_MEASUREMENT_ID) {
