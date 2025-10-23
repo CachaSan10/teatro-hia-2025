@@ -34,14 +34,14 @@ export default function Cartelera() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black  py-8">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-4xl font-bold text-white  mb-4">
             Cartelera
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-white max-w-2xl mx-auto">
             Descubre los próximos eventos y espectáculos en nuestro teatro
           </p>
         </div>
@@ -54,7 +54,7 @@ export default function Cartelera() {
               onClick={() => handleFiltrarCategoria(categoria.id)}
               className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
                 categoriaActiva === categoria.id
-                  ? 'bg-primary text-white'
+                  ? 'bg-[#E6192B] text-white'
                   : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
               }`}
             >
@@ -65,7 +65,7 @@ export default function Cartelera() {
 
         {/* Contador de eventos */}
         <div className="text-center mb-6">
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-white">
             Mostrando {eventosFiltrados.length} de {eventos.length} eventos
           </p>
         </div>

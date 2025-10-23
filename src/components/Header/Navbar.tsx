@@ -27,14 +27,14 @@ export default function Navbar() {
           <Link
             key={item.label}
             href={item.href}
-            className="hover:text-primary transition-colors duration-200"
+            className="hover:text-[#E6192B] transition-colors duration-200"
           >
             {item.label}
           </Link>
         ))}
         <Link
           href="#"
-          className="bg-primary text-white px-4 py-2 rounded-lg font-bold hover:bg-primary/90 transition-colors duration-200"
+          className="bg-[#E6192B] text-white px-4 py-2 rounded-lg font-bold hover:bg-[#93101B] transition-colors duration-200"
         >
           Compra de Entrada
         </Link>

@@ -54,7 +54,7 @@ export default function EventoCard({ evento, onComprarEntradas }: EventoCardProp
           <div className="flex items-end gap-3 justify-end mt-4 @xl:mt-2">
             <button 
               onClick={() => onComprarEntradas(evento)}
-              className="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-medium leading-normal hover:bg-primary/90 transition-colors duration-200"
+              className="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#E6192B] text-white text-sm font-medium leading-normal hover:bg-[#93101B] transition-colors duration-200"
             >
               <span className="truncate">Comprar Entradas</span>
             </button>

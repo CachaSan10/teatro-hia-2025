@@ -6,6 +6,12 @@ import { Sala } from './data/salasData';
 interface SalaCardProps {
   sala: Sala;
 }
+
+const colores = {
+  dorado : "bg-[#996e02]",
+  textoDorado: "text-[#996e02]"
+};
+
 export default function SalaCard({ sala }: SalaCardProps) {
   const handleBotonClick = () => {
     console.log(`Acción para: ${sala.nombre}`);
@@ -48,7 +54,7 @@ export default function SalaCard({ sala }: SalaCardProps) {
           <div className="space-y-3">
             {sala.caracteristicas.map((caracteristica, index) => (
               <div key={index} className="flex items-center gap-3 text-gray-200">
-                <span className="material-symbols-outlined text-primary text-xl">
+                <span className={`material-symbols-outlined ${colores.textoDorado} text-xl`}>
                   {caracteristica.icono}
                 </span>
                 <span className="text-base">{caracteristica.texto}</span>
@@ -59,7 +65,7 @@ export default function SalaCard({ sala }: SalaCardProps) {
           {/* Botón de acción */}
           <button 
             onClick={handleBotonClick}
-            className="w-full lg:w-auto px-8 py-3 bg-primary text-white text-lg font-semibold rounded-xl hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className={`w-full lg:w-auto px-8 py-3 ${colores.dorado} text-white text-lg font-semibold rounded-xl hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1`}
           >
             {sala.botonTexto}
           </button>
