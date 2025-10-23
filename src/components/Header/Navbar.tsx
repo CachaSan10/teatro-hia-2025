@@ -17,8 +17,8 @@ export default function Navbar() {
   return (
     <nav className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-4 text-white">
       {/* Logo */}
-      <Link href="#" className="text-xl font-bold">
-        Teatro Principal
+      <Link href="/" className="text-xl font-bold">
+        Teatro Mitre
       </Link>
 
       {/* Desktop Navigation */}
@@ -33,7 +33,7 @@ export default function Navbar() {
           </Link>
         ))}
         <Link
-          href="#"
+          href="compra-entrada"
           className="bg-[#E6192B] text-white px-4 py-2 rounded-lg font-bold hover:bg-[#93101B] transition-colors duration-200"
         >
           Compra de Entrada
@@ -63,7 +63,7 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
-              href="#"
+              href="compra-entrada"
               className="bg-primary text-white px-4 py-2 rounded-lg font-bold text-center hover:bg-primary/90 transition-colors duration-200"
               onClick={() => setIsMenuOpen(false)}
             >

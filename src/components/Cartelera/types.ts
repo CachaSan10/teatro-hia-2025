@@ -6,8 +6,8 @@ export interface Evento {
     imagen:string;
     alt: string;
     descripcion?:string;
-    precio?:number;
-    sala?:string;
+    precio:number;
+    sala:string;
     categoria: 'teatro' | 'musica' | 'danza' | 'comedia' | 'opera' | 'otros';
 }
 
