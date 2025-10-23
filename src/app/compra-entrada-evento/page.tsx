@@ -3,6 +3,7 @@
 
 import { useSearchParams } from 'next/navigation';
 import CompraEntradaEvento from '@/components/CompraEntradas/CompraEntradaEvento';
+import { Suspense } from 'react';
 
 export default function ComprarEntradasIndividualPage() {
   const searchParams = useSearchParams();
@@ -18,5 +19,9 @@ export default function ComprarEntradasIndividualPage() {
     precio: parseFloat(searchParams.get('precio') || '0')
   };
 
-  return <CompraEntradaEvento {...eventoProps} />;
+  return 
+  <Suspense fallback={<div>Cargando...</div>}>
+ <CompraEntradaEvento {...eventoProps} />;   
+  </Suspense>
+ 
 }
