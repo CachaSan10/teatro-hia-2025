@@ -1,4 +1,4 @@
-// components/GoogleAnalytics/GoogleAnalytics.tsx - SIN TIPOS COMPLEJOS
+// components/GoogleAnalytics/GoogleAnalytics.tsx
 'use client';
 
 import Script from 'next/script';
@@ -6,19 +6,22 @@ import Script from 'next/script';
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export default function GoogleAnalytics() {
+  // Si no hay ID configurado, no renderizar nada
   if (!GA_MEASUREMENT_ID) {
     return null;
   }
 
   return (
     <>
+      {/* Google tag (gtag.js) - Script asíncrono */}
       <Script
-        strategy="afterInteractive"
+        async
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
       />
+      
+      {/* Script de configuración inicial */}
       <Script
         id="google-analytics"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
