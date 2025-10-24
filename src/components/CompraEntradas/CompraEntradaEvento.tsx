@@ -26,9 +26,10 @@ export default function CompraEntradas(props: PropsEvento) {
     titulo: titulo,
     fecha: fecha,
     hora: hora,
-    teatro: sala,
+    sala: sala,
     imagen: imagen,
-    precio: precio
+    precio: precio,
+    categoria:"teatro"
   });
 
   const [entrada, setEntrada] = useState<Entrada>({

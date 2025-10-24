@@ -16,7 +16,7 @@ export default function EventoInfo({ evento }: EventoInfoProps) {
           {evento.fecha} - {evento.hora}
         </p>
         <p className="text-gray-300 text-sm font-normal leading-normal">
-          {evento.teatro}
+          {evento.sala}
         </p>
         <p className="text-primary font-semibold text-base mt-2">
           $ {evento.precio.toFixed(2)}  por entrada

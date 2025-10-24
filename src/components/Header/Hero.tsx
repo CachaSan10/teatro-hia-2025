@@ -16,14 +16,7 @@ export default function Hero() {
         <p className="text-lg md:text-xl">
           Descubre un mundo de arte y emoción
         </p>
-        <div className="flex flex-wrap gap-4 justify-center mt-4">
-          <Button variant="primary">
-            Ver cartelera
-          </Button>
-          <Button variant="secondary">
-            Comprar entradas
-          </Button>
-        </div>
+      
       </div>
     </div>
   );

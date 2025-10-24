@@ -4,9 +4,10 @@ export interface Evento {
   titulo: string;
   fecha: string;
   hora: string;
-  teatro: string;
+  sala: string;
   imagen: string;
   precio: number;
+  categoria: 'teatro' | 'musica' | 'danza' | 'comedia' | 'opera' | 'otros';
 }
 
 export interface Entrada {

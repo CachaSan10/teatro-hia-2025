@@ -10,9 +10,9 @@ export default function Footer() {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         
         {/* Información del Teatro */}
-        <FooterSection title="Teatro Principal">
+        <FooterSection title="Teatro Mitre">
           <p className="text-sm text-gray-400">
-            El escenario de tus sueños desde 1923.
+            El escenario de tus sueños desde 1983.
           </p>
         </FooterSection>
 
@@ -24,9 +24,9 @@ export default function Footer() {
         {/* Contacto */}
         <FooterSection title="Contacto">
           <div className="space-y-2 text-sm text-gray-400">
-            <p>Av. Principal 123, Ciudad</p>
+            <p>Gral. Alvear 1009, Y4600 San Salvador de Jujuy</p>
             <p>info@teatroprincipal.com</p>
-            <p>(123) 456-7890</p>
+            <p>(388) 4221342</p>
           </div>
         </FooterSection>
 

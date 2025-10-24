@@ -1,29 +1,51 @@
 // components/CompraEntradas/CompraEntradas.tsx
 'use client';
 
-import { useState } from 'react';
-import { Evento, Entrada, DatosPago } from './types';
+import { useState, useEffect } from 'react';
+import { Entrada, DatosPago } from './types';
 import EventoInfo from './EventoInfo';
 import SelectorEntradas from './SelectorEntradas';
 import ResumenCosto from './ResumenCosto';
 import MetodoPago from './MetodoPago';
 import FormularioTarjeta from './FormularioTarjeta';
+import { eventosData } from '../Cartelera/data/eventosData';
+
+// Categorías de eventos
+const CATEGORIAS_EVENTOS = [
+  { id: 'todos', label: 'Todos' },
+  { id: 'teatro', label: 'Teatro' },
+  { id: 'musica', label: 'Música' },
+  { id: 'danza', label: 'Danza' },
+  { id: 'comedia', label: 'Comedia' },
+  { id: 'opera', label: 'Ópera' },
+];
+
+interface Evento {
+  id: number;
+  titulo: string;
+  fecha: string;
+  hora: string;
+  imagen: string;
+  alt: string;
+  descripcion?: string;
+  precio: number;
+  sala: string;
+  categoria: 'teatro' | 'musica' | 'danza' | 'comedia' | 'opera' | 'otros';
+}
 
 export default function CompraEntradas() {
-  const [evento] = useState<Evento>({
-    id: 1,
-    titulo: "El Fantasma de la Ópera",
-    fecha: "25 de Diciembre, 2024",
-    hora: "20:00h",
-    teatro: "Teatro Principal",
-    imagen: "https://images.unsplash.com/photo-1574267432553-4b4628081c31?w=500&h=500&fit=crop",
-    precio: 75.00
-  });
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string>('todos');
+  const [eventoSeleccionado, setEventoSeleccionado] = useState<string>('');
+  const [eventosFiltrados, setEventosFiltrados] = useState<Evento[]>([]);
+  const [evento, setEvento] = useState<Evento | null>(null);
+ 
+  // Simulación de datos de eventos (reemplaza esto con tu data real)
+  const [todosLosEventos] = useState<Evento[]>(eventosData);
 
   const [entrada, setEntrada] = useState<Entrada>({
     cantidad: 2,
     precioUnitario: 75.00,
-    total: 155.00
+    total: 150.00
   });
 
   const [datosPago, setDatosPago] = useState<DatosPago>({
@@ -37,9 +59,42 @@ export default function CompraEntradas() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
 
+  // Filtrar eventos cuando se selecciona una categoría
+  useEffect(() => {
+    if (categoriaSeleccionada === 'todos') {
+      setEventosFiltrados(todosLosEventos);
+    } else {
+      const eventosFiltrados = todosLosEventos.filter(
+        evento => evento.categoria === categoriaSeleccionada
+      );
+      setEventosFiltrados(eventosFiltrados);
+    }
+    setEventoSeleccionado(''); // Resetear evento seleccionado
+    setEvento(null); // Resetear evento actual
+  }, [categoriaSeleccionada, todosLosEventos]);
+
+  // Actualizar evento cuando se selecciona uno
+  useEffect(() => {
+    if (eventoSeleccionado) {
+      const eventoEncontrado = eventosFiltrados.find(
+        evento => evento.id === parseInt(eventoSeleccionado)
+      );
+      if (eventoEncontrado) {
+        setEvento(eventoEncontrado);
+        // Actualizar el precio en la entrada
+        setEntrada(prev => ({
+          ...prev,
+          precioUnitario: eventoEncontrado.precio,
+          total: prev.cantidad * eventoEncontrado.precio
+        }));
+      }
+    } else {
+      setEvento(null);
+    }
+  }, [eventoSeleccionado, eventosFiltrados]);
+
   const handleCantidadChange = (cantidad: number) => {
-    const nuevoSubtotal = cantidad * entrada.precioUnitario;
-    const nuevoTotal = nuevoSubtotal ;
+    const nuevoTotal = cantidad * entrada.precioUnitario;
     
     setEntrada({
       ...entrada,
@@ -64,6 +119,10 @@ export default function CompraEntradas() {
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
+
+    if (!eventoSeleccionado) {
+      newErrors.evento = 'Debes seleccionar un evento';
+    }
 
     if (datosPago.metodo === 'tarjeta') {
       if (!datosPago.titular.trim()) {
@@ -123,7 +182,7 @@ export default function CompraEntradas() {
     }
   };
 
-  const total = entrada.cantidad * entrada.precioUnitario ;
+  const total = entrada.cantidad * entrada.precioUnitario;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black flex flex-col items-center justify-center p-4">
@@ -142,41 +201,97 @@ export default function CompraEntradas() {
         {/* Card del formulario con bordes redondeados */}
         <div className="bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-700/50 p-8">
           
-          {/* Información del evento */}
+          {/* Selectores de categoría y evento */}
           <div className="mb-6">
-            <h2 className="text-xl font-semibold text-white mb-4">Tu Evento</h2>
-            <EventoInfo evento={evento} />
+            <h2 className="text-xl font-semibold text-white mb-4">Selecciona tu Evento</h2>
+            
+            {/* Selector de categoría */}
+            <div className="mb-4">
+              <label htmlFor="categoria" className="block text-sm font-medium text-gray-300 mb-2">
+                Categoría del Evento
+              </label>
+              <select
+                id="categoria"
+                value={categoriaSeleccionada}
+                onChange={(e) => setCategoriaSeleccionada(e.target.value)}
+                className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              >
+                {CATEGORIAS_EVENTOS.map(categoria => (
+                  <option key={categoria.id} value={categoria.id}>
+                    {categoria.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Selector de evento */}
+            <div className="mb-4">
+              <label htmlFor="evento" className="block text-sm font-medium text-gray-300 mb-2">
+                Evento
+              </label>
+              <select
+                id="evento"
+                value={eventoSeleccionado}
+                onChange={(e) => setEventoSeleccionado(e.target.value)}
+                disabled={eventosFiltrados.length === 0}
+                className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <option value="">Selecciona un evento</option>
+                {eventosFiltrados.map(evento => (
+                  <option key={evento.id} value={evento.id}>
+                    {evento.titulo} - {evento.fecha} - ${evento.precio}
+                  </option>
+                ))}
+              </select>
+              {errors.evento && (
+                <p className="text-red-400 text-sm mt-1">{errors.evento}</p>
+              )}
+            </div>
           </div>
+
+          {/* Información del evento */}
+          {evento && (
+            <div className="mb-6">
+              <h2 className="text-xl font-semibold text-white mb-4">Tu Evento</h2>
+              <EventoInfo evento={evento} />
+            </div>
+          )}
 
           {/* Formulario */}
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             
             {/* Selección de entradas */}
-            <div>
-              <h2 className="text-xl font-semibold text-white mb-4">Cantidad de Entradas</h2>
-              <SelectorEntradas 
-                cantidad={entrada.cantidad} 
-                onCantidadChange={handleCantidadChange} 
-              />
-            </div>
+            {evento && (
+              <div>
+                <h2 className="text-xl font-semibold text-white mb-4">Cantidad de Entradas</h2>
+                <SelectorEntradas 
+                  cantidad={entrada.cantidad} 
+                  onCantidadChange={handleCantidadChange} 
+                />
+              </div>
+            )}
 
             {/* Resumen de costo */}
-            <div>
-              <h2 className="text-xl font-semibold text-white mb-4">Resumen del Pedido</h2>
-              <ResumenCosto entrada={entrada} />
-            </div>
+            {evento && (
+              <div>
+                <h2 className="text-xl font-semibold text-white mb-4">Resumen del Pedido</h2>
+                <ResumenCosto entrada={entrada} />
+              </div>
+            )}
 
             {/* Método de pago */}
-            <div>
-              <h2 className="text-xl font-semibold text-white mb-4">Método de Pago</h2>
-              <MetodoPago 
-                metodoSeleccionado={datosPago.metodo}
-                onMetodoChange={(metodo) => handleDatosPagoChange({ metodo: metodo as 'tarjeta' | 'paypal' })}
-              />
-            </div>
+            {evento && (
+              <div>
+                <h2 className="text-xl font-semibold text-white mb-4">Método de Pago</h2>
+                <MetodoPago 
+                  metodoSeleccionado={datosPago.metodo}
+                  onMetodoChange={(metodo) => handleDatosPagoChange({ metodo: metodo as 'tarjeta' | 'paypal' })}
+                />
+              </div>
+            )}
 
             {/* Formulario de tarjeta */}
-            {datosPago.metodo === 'tarjeta' && (
+            {evento && datosPago.metodo === 'tarjeta' && (
               <div>
                 <h2 className="text-xl font-semibold text-white mb-4">Datos de Pago</h2>
                 <FormularioTarjeta 
@@ -187,29 +302,33 @@ export default function CompraEntradas() {
               </div>
             )}
 
-            {/* Texto de seguridad */}
-            <div className="flex items-center justify-center gap-2 text-sm text-gray-400 mt-4">
-              <span className="material-symbols-outlined text-base">lock</span>
-              <span>Transacción 100% segura y encriptada</span>
-            </div>
+            {/* Texto de seguridad y botón de envío */}
+            {evento && (
+              <>
+                <div className="flex items-center justify-center gap-2 text-sm text-gray-400 mt-4">
+                  <span className="material-symbols-outlined text-base">lock</span>
+                  <span>Transacción 100% segura y encriptada</span>
+                </div>
 
-            {/* Botón de envío */}
-            <div className="mt-4">
-              <button 
-                type="submit"
-                disabled={loading}
-                className="w-full bg-primary text-white font-bold py-4 px-4 rounded-xl shadow-lg hover:bg-primary/90 transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              >
-                {loading ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Procesando pago...
-                  </>
-                ) : (
-                  `Pagar $${total.toFixed(2)} `
-                )}
-              </button>
-            </div>
+                {/* Botón de envío */}
+                <div className="mt-4">
+                  <button 
+                    type="submit"
+                    disabled={loading}
+                    className="w-full bg-primary text-white font-bold py-4 px-4 rounded-xl shadow-lg hover:bg-primary/90 transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  >
+                    {loading ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Procesando pago...
+                      </>
+                    ) : (
+                      `Pagar $${total.toFixed(2)} `
+                    )}
+                  </button>
+                </div>
+              </>
+            )}
           </form>
 
           {/* Footer Links dentro del card */}
