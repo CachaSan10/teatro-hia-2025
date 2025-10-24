@@ -12,7 +12,6 @@ export interface Evento {
 export interface Entrada {
   cantidad: number;
   precioUnitario: number;
-  gastosGestion: number;
   total: number;
 }
 

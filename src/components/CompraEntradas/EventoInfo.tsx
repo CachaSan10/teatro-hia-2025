@@ -19,7 +19,7 @@ export default function EventoInfo({ evento }: EventoInfoProps) {
           {evento.teatro}
         </p>
         <p className="text-primary font-semibold text-base mt-2">
-          {evento.precio.toFixed(2)} € por entrada
+          $ {evento.precio.toFixed(2)}  por entrada
         </p>
       </div>
       <div className="flex-1">

@@ -32,10 +32,9 @@ export default function CompraEntradas(props: PropsEvento) {
   });
 
   const [entrada, setEntrada] = useState<Entrada>({
-    cantidad: 2,
-    precioUnitario: 75.00,
-    gastosGestion: 5.00,
-    total: 155.00
+    cantidad: 1,
+    precioUnitario: precio,
+    total: precio
   });
 
   const [datosPago, setDatosPago] = useState<DatosPago>({
@@ -51,7 +50,7 @@ export default function CompraEntradas(props: PropsEvento) {
 
   const handleCantidadChange = (cantidad: number) => {
     const nuevoSubtotal = cantidad * entrada.precioUnitario;
-    const nuevoTotal = nuevoSubtotal + entrada.gastosGestion;
+    const nuevoTotal = nuevoSubtotal;
     
     setEntrada({
       ...entrada,
@@ -135,7 +134,7 @@ export default function CompraEntradas(props: PropsEvento) {
     }
   };
 
-  const total = entrada.cantidad * entrada.precioUnitario + entrada.gastosGestion;
+  const total = entrada.cantidad * entrada.precioUnitario ;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black flex flex-col items-center justify-center p-4">
@@ -218,7 +217,7 @@ export default function CompraEntradas(props: PropsEvento) {
                     Procesando pago...
                   </>
                 ) : (
-                  `Pagar ${total.toFixed(2)} €`
+                  `Pagar  $${total.toFixed(2)} `
                 )}
               </button>
             </div>
