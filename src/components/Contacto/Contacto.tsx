@@ -5,6 +5,7 @@ import { FormData } from './types';
 import InputField from './InputField';
 import SubmitButton from './SubmitButton';
 import ModalEnvioExitoso from './ModalEnvioExitoso'; // Asegúrate de ajustar la ruta
+import Link from 'next/link';
 
 export default function Contacto() {
   const [formData, setFormData] = useState<FormData>({
@@ -184,12 +185,12 @@ export default function Contacto() {
 
         {/* Enlace de volver al home */}
         <div className="text-center text-sm text-gray-400 mt-8">
-          <p>
-            <a href="/" className="font-semibold text-[#F72A39] hover:underline">
-              Volver al inicio
-            </a>
-          </p>
-        </div>
+  <p>
+    <Link href="/" className="font-semibold text-[#F72A39] hover:underline">
+      Volver al inicio
+    </Link>
+  </p>
+</div>
       </div>
 
       {/* Modal de envío exitoso */}
