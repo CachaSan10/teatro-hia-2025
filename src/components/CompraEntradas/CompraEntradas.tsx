@@ -9,6 +9,8 @@ import ResumenCosto from './ResumenCosto';
 import MetodoPago from './MetodoPago';
 import FormularioTarjeta from './FormularioTarjeta';
 import { eventosData } from '../Cartelera/data/eventosData';
+import ModalPagoExitoso from './ModalPagoExitoso';
+import Link from 'next/link';
 
 // Categorías de eventos
 const CATEGORIAS_EVENTOS = [
@@ -38,7 +40,10 @@ export default function CompraEntradas() {
   const [eventoSeleccionado, setEventoSeleccionado] = useState<string>('');
   const [eventosFiltrados, setEventosFiltrados] = useState<Evento[]>([]);
   const [evento, setEvento] = useState<Evento | null>(null);
- 
+   const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+
   // Simulación de datos de eventos (reemplaza esto con tu data real)
   const [todosLosEventos] = useState<Evento[]>(eventosData);
 
@@ -162,8 +167,8 @@ export default function CompraEntradas() {
       // Simular procesamiento de pago
       console.log('Procesando pago...', { evento, entrada, datosPago });
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      alert('¡Pago procesado exitosamente! Recibirás un email de confirmación.');
+    
+     // alert('¡Pago procesado exitosamente! Recibirás un email de confirmación.');
       
       // Reset form
       setDatosPago({
@@ -173,6 +178,7 @@ export default function CompraEntradas() {
         fechaExpiracion: '',
         cvv: ''
       });
+        setIsModalOpen(true);
       
     } catch (error) {
       console.error('Error en el pago:', error);
@@ -358,6 +364,16 @@ export default function CompraEntradas() {
             </a>
           </p>
         </div>
+
+<div>
+  <ModalPagoExitoso
+    isOpen={isModalOpen}
+    onClose={() => setIsModalOpen(false)}
+    redirectUrl="/"
+  />
+</div>
+
+
       </div>
     </div>
   );

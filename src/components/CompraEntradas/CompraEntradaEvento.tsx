@@ -8,19 +8,20 @@ import SelectorEntradas from './SelectorEntradas';
 import ResumenCosto from './ResumenCosto';
 import MetodoPago from './MetodoPago';
 import FormularioTarjeta from './FormularioTarjeta';
+import ModalPagoExitoso from './ModalPagoExitoso';
 
 interface PropsEvento {
-    id: number,
-    titulo: string,
-    fecha: string,
-    hora: string,
-    sala: string,
-    imagen: string,
-    precio: number
+  id: number,
+  titulo: string,
+  fecha: string,
+  hora: string,
+  sala: string,
+  imagen: string,
+  precio: number
 };
 
 export default function CompraEntradas(props: PropsEvento) {
-    const {id, titulo, fecha, hora, sala, imagen, precio} = props;
+  const { id, titulo, fecha, hora, sala, imagen, precio } = props;
   const [evento] = useState<Evento>({
     id: id,
     titulo: titulo,
@@ -29,8 +30,11 @@ export default function CompraEntradas(props: PropsEvento) {
     sala: sala,
     imagen: imagen,
     precio: precio,
-    categoria:"teatro"
+    categoria: "teatro"
   });
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   const [entrada, setEntrada] = useState<Entrada>({
     cantidad: 1,
@@ -52,7 +56,7 @@ export default function CompraEntradas(props: PropsEvento) {
   const handleCantidadChange = (cantidad: number) => {
     const nuevoSubtotal = cantidad * entrada.precioUnitario;
     const nuevoTotal = nuevoSubtotal;
-    
+
     setEntrada({
       ...entrada,
       cantidad,
@@ -115,9 +119,9 @@ export default function CompraEntradas(props: PropsEvento) {
       // Simular procesamiento de pago
       console.log('Procesando pago...', { evento, entrada, datosPago });
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      alert('¡Pago procesado exitosamente! Recibirás un email de confirmación.');
-      
+
+      //alert('¡Pago procesado exitosamente! Recibirás un email de confirmación.');
+
       // Reset form
       setDatosPago({
         metodo: 'tarjeta',
@@ -126,7 +130,9 @@ export default function CompraEntradas(props: PropsEvento) {
         fechaExpiracion: '',
         cvv: ''
       });
-      
+      setIsModalOpen(true);
+
+
     } catch (error) {
       console.error('Error en el pago:', error);
       alert('Error en el procesamiento del pago. Por favor, intenta nuevamente.');
@@ -135,12 +141,12 @@ export default function CompraEntradas(props: PropsEvento) {
     }
   };
 
-  const total = entrada.cantidad * entrada.precioUnitario ;
+  const total = entrada.cantidad * entrada.precioUnitario;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-2xl">
-        
+
         {/* Header fuera del card */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold tracking-tight text-white mb-3">
@@ -153,7 +159,7 @@ export default function CompraEntradas(props: PropsEvento) {
 
         {/* Card del formulario con bordes redondeados */}
         <div className="bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-700/50 p-8">
-          
+
           {/* Información del evento */}
           <div className="mb-6">
             <h2 className="text-xl font-semibold text-white mb-4">Tu Evento</h2>
@@ -162,13 +168,13 @@ export default function CompraEntradas(props: PropsEvento) {
 
           {/* Formulario */}
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-            
+
             {/* Selección de entradas */}
             <div>
               <h2 className="text-xl font-semibold text-white mb-4">Cantidad de Entradas</h2>
-              <SelectorEntradas 
-                cantidad={entrada.cantidad} 
-                onCantidadChange={handleCantidadChange} 
+              <SelectorEntradas
+                cantidad={entrada.cantidad}
+                onCantidadChange={handleCantidadChange}
               />
             </div>
 
@@ -181,7 +187,7 @@ export default function CompraEntradas(props: PropsEvento) {
             {/* Método de pago */}
             <div>
               <h2 className="text-xl font-semibold text-white mb-4">Método de Pago</h2>
-              <MetodoPago 
+              <MetodoPago
                 metodoSeleccionado={datosPago.metodo}
                 onMetodoChange={(metodo) => handleDatosPagoChange({ metodo: metodo as 'tarjeta' | 'paypal' })}
               />
@@ -191,7 +197,7 @@ export default function CompraEntradas(props: PropsEvento) {
             {datosPago.metodo === 'tarjeta' && (
               <div>
                 <h2 className="text-xl font-semibold text-white mb-4">Datos de Pago</h2>
-                <FormularioTarjeta 
+                <FormularioTarjeta
                   datosPago={datosPago}
                   onDatosPagoChange={handleDatosPagoChange}
                   errors={errors}
@@ -207,7 +213,7 @@ export default function CompraEntradas(props: PropsEvento) {
 
             {/* Botón de envío */}
             <div className="mt-4">
-              <button 
+              <button
                 type="submit"
                 disabled={loading}
                 className="w-full bg-primary text-white font-bold py-4 px-4 rounded-xl shadow-lg hover:bg-primary/90 transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
@@ -251,6 +257,17 @@ export default function CompraEntradas(props: PropsEvento) {
             </a>
           </p>
         </div>
+
+        <div>
+          <ModalPagoExitoso
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            redirectUrl="/"
+          />
+        </div>
+
+
+
       </div>
     </div>
   );
