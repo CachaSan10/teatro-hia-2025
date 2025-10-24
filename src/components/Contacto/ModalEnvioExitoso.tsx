@@ -2,17 +2,17 @@
 
 import Link from 'next/link';
 
-interface ModalPagoExitosoProps {
+interface ModalEnvioExitosoProps {
   isOpen: boolean;
   onClose: () => void;
   redirectUrl?: string;
 }
 
-export default function ModalPagoExitoso({
+export default function ModalEnvioExitoso({
   isOpen,
   onClose,
   redirectUrl = '/'
-}: ModalPagoExitosoProps) {
+}: ModalEnvioExitosoProps) {
   if (!isOpen) return null;
 
   return (
@@ -39,20 +39,20 @@ export default function ModalPagoExitoso({
         
         {/* Mensaje */}
         <h3 className="text-xl font-bold text-center text-gray-800 mb-4">
-          Pago Exitoso
+          Mensaje Enviado
         </h3>
         
         <p className="text-gray-600 text-center mb-6">
-          Tu pago se ha procesado correctamente.
+          Tu mensaje ha sido enviado correctamente. Te contactaremos pronto.
         </p>
 
         {/* Botón que redirige */}
         <Link
           href={redirectUrl}
-          className="block w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded text-center transition-colors"
+          className="block w-full bg-[#F72A39] hover:bg-[#e02432] text-white font-medium py-2 px-4 rounded text-center transition-colors"
           onClick={onClose} // También cierra el modal
         >
-          Cerrar
+          Volver al Inicio
         </Link>
       </div>
     </div>

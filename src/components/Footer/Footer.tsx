@@ -1,4 +1,3 @@
-// components/Footer/Footer.tsx
 import FooterSection from './FooterSection';
 import NavigationLinks from './NavigationLinks';
 import SocialLinks from './SocialLinks';

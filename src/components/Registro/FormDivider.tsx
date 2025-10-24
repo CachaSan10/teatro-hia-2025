@@ -1,4 +1,3 @@
-// components/Registro/FormDivider.tsx
 export default function FormDivider() {
   return (
     <div className="relative my-6 flex items-center justify-center">

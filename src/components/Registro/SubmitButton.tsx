@@ -1,4 +1,3 @@
-// components/Registro/SubmitButton.tsx
 interface SubmitButtonProps {
   loading?: boolean;
 }

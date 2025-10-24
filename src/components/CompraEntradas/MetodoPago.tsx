@@ -1,4 +1,3 @@
-// components/CompraEntradas/MetodoPago.tsx
 interface MetodoPagoProps {
   metodoSeleccionado: string;
   onMetodoChange: (metodo: string) => void;

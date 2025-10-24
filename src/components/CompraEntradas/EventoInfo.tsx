@@ -1,4 +1,3 @@
-// components/CompraEntradas/EventoInfo.tsx
 import { Evento } from './types';
 
 interface EventoInfoProps {

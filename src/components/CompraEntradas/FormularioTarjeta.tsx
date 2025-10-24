@@ -1,4 +1,3 @@
-// components/CompraEntradas/FormularioTarjeta.tsx
 import { DatosPago } from './types';
 
 interface FormularioTarjetaProps {

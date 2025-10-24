@@ -1,4 +1,3 @@
-// components/Footer/SocialLinks.tsx
 export default function SocialLinks() {
   const socialNetworks = [
     {

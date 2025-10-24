@@ -1,4 +1,3 @@
-// components/Home/ObraCard.tsx - Versión mejorada
 'use client';
 
 import { Obra } from './data/obrasData';

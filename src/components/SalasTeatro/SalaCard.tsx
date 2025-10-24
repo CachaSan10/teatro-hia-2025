@@ -1,4 +1,3 @@
-// components/SalasTeatro/SalaCard.tsx
 'use client';
 
 import { Sala } from './data/salasData';

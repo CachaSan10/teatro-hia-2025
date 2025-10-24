@@ -1,4 +1,3 @@
-// components/Home/data/artistasData.ts
 export interface Artista {
   id: number;
   nombre: string;

@@ -1,4 +1,3 @@
-// components/Home/data/obrasData.ts
 export interface Obra {
   id: number;
   titulo: string;

@@ -1,4 +1,3 @@
-// components/Registro/types.ts
 export interface FormData {
   fullName: string;
   email: string;

@@ -1,4 +1,3 @@
-// components/CompraEntradas/CompraEntradas.tsx
 'use client';
 
 import { useState } from 'react';

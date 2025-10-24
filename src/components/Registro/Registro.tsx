@@ -1,4 +1,3 @@
-// components/Registro/Registro.tsx
 'use client';
 
 import { useState } from 'react';
@@ -8,6 +7,7 @@ import FormDivider from './FormDivider';
 import InputField from './InputField';
 import SubmitButton from './SubmitButton';
 import FooterLinks from './FooterLinks';
+import ModalRegistroExitoso from './ModalRegistroExitoso';
 
 export default function Registro() {
   const [formData, setFormData] = useState<FormData>({
@@ -17,6 +17,7 @@ export default function Registro() {
     confirmPassword: ''
   });
   const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -49,7 +50,8 @@ export default function Registro() {
       // Simular llamada a API
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      alert('¡Registro exitoso! Revisa tu email para verificar tu cuenta.');
+      // Mostrar modal de éxito en lugar de alert
+      setIsModalOpen(true);
       
       // Reset form
       setFormData({
@@ -66,8 +68,12 @@ export default function Registro() {
     }
   };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black  flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md">
         
         {/* Header fuera del card */}
@@ -171,6 +177,13 @@ export default function Registro() {
           </p>
         </div>
       </div>
+
+      {/* Modal de registro exitoso */}
+      <ModalRegistroExitoso
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        redirectUrl="/"
+      />
     </div>
   );
 }

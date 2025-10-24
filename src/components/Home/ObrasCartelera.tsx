@@ -1,4 +1,3 @@
-// components/Home/ObrasCartelera.tsx
 'use client';
 
 import { obrasData } from './data/obrasData';

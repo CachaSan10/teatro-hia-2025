@@ -1,4 +1,3 @@
-// components/Header/Header.tsx
 import Navbar from './Navbar';
 import Hero from './Hero';
 

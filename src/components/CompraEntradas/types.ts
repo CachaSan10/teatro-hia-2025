@@ -1,4 +1,3 @@
-// components/CompraEntradas/types.ts
 export interface Evento {
   id: number;
   titulo: string;

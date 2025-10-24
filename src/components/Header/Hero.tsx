@@ -1,4 +1,3 @@
-// components/Header/Hero.tsx
 import Button from './Button';
 
 export default function Hero() {

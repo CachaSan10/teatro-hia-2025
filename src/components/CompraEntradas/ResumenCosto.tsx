@@ -1,4 +1,3 @@
-// components/CompraEntradas/ResumenCosto.tsx
 import { Entrada } from './types';
 
 interface ResumenCostoProps {

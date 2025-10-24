@@ -1,4 +1,3 @@
-// components/Home/ArtistCard.tsx
 'use client';
 
 import { Artista } from './data/artistasData';

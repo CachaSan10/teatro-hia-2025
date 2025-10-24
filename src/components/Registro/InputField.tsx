@@ -1,4 +1,3 @@
-// components/Registro/InputField.tsx
 import { InputFieldProps } from './types';
 
 export default function InputField({

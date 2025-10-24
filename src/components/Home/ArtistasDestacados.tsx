@@ -1,4 +1,3 @@
-// components/Home/ArtistasDestacados.tsx - Versión corregida
 'use client';
 
 import { artistasData, Artista } from './data/artistasData';

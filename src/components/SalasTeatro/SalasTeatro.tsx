@@ -1,4 +1,3 @@
-// components/SalasTeatro/SalasTeatro.tsx
 'use client';
 
 import { salasData } from './data/salasData';

@@ -1,4 +1,3 @@
-// components/Home/Home.tsx
 import ArtistasDestacados from './ArtistasDestacados';
 import ObrasCartelera from './ObrasCartelera';
 

@@ -1,4 +1,3 @@
-// components/Footer/Copyright.tsx
 export default function Copyright() {
   const currentYear = new Date().getFullYear();
 

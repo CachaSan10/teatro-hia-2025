@@ -1,4 +1,3 @@
-// components/Registro/GoogleButton.tsx
 interface GoogleButtonProps {
   onClick?: () => void;
 }

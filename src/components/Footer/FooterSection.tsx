@@ -1,4 +1,3 @@
-// components/Footer/FooterSection.tsx
 import { ReactNode } from 'react';
 
 interface FooterSectionProps {

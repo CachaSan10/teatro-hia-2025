@@ -1,4 +1,3 @@
-// components/SalasTeatro/data/salasData.ts
 
 export interface Caracteristica {
   icono: string;

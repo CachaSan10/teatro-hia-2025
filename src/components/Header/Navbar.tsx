@@ -1,4 +1,3 @@
-// components/Header/Navbar.tsx
 'use client';
 
 import { useState } from 'react';
@@ -12,6 +11,7 @@ export default function Navbar() {
     { href: '/salas-de-teatro', label: 'Salas de Teatro' },
     { href: '/registro', label: 'Registro' },
     { href: '/cartelera', label: 'Cartelera' },
+    { href: 'contacto', label: 'Contactenos'}
   ];
 
   return (
