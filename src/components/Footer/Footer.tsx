@@ -25,8 +25,7 @@ export default function Footer() {
         <FooterSection title="Contacto">
           <div className="space-y-2 text-sm text-gray-400">
             <p>Gral. Alvear 1009, Y4600 San Salvador de Jujuy</p>
-            <p>info@teatroprincipal.com</p>
-            <p>(388) 4221342</p>
+            <p>+54 (388) 4221342</p>
           </div>
         </FooterSection>
 
