@@ -1,5 +1,4 @@
 import Navbar from './Navbar';
-import Hero from './Hero';
 
 export default function Header() {
   return (
@@ -10,8 +9,6 @@ export default function Header() {
       {/* Navigation */}
       <Navbar />
       
-      {/* Hero Section */}
-      <Hero />
     </header>
   );
 }
